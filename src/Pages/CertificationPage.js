@@ -1,11 +1,50 @@
-import React from 'react'
+import React, { useState,useEffect } from 'react'
 import Certification from '../Components/Common/certification/certification '
 import NavBar from '../Components/Common/navBar/NavBar'
 import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
 import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 function CertificationPage() {
+
+  
+  const [certifications, setCertifications] = useState();
+  const [form,setform] = useState({"UserId" : localStorage.getItem('userId')})
+
+  const onChangeHandler = (e)=>{
+    setform(
+      {...form,
+      [e.target.name]: e.target.value
+    }
+    )
+   
+  }
+
+  useEffect(async() => {
+    await axios.get(`https://localhost:7154/api/certification/getbyuser?id=${localStorage.getItem('userId')}`).then(res=>{
+      setCertifications(res.data)
+
+    })
+
+    
+  }, []);
+
+  const onSubmitHandler = (e)=>{
+    e.preventDefault();
+    axios.post('https://localhost:7154/api/certification/add',form)
+    .then(
+      res=>{
+        console.log(res.data.message)
+        setform({"UserId" : localStorage.getItem('userId')})
+      }
+      
+    )
+   
+  
+  
+  
+  }
   return (
     <div className='bg-gray-50 flex flex-row h-full'>
 
@@ -43,7 +82,7 @@ function CertificationPage() {
 
               
 
-           <Certification/>
+           <Certification onChangeHandler={onChangeHandler} onSubmitHandler={onSubmitHandler} />
 
         </div>
 

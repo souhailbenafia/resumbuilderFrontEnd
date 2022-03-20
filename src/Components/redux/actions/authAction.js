@@ -29,9 +29,11 @@ export const LoginAction = (form,navigate)=>dispatch=>{
     .then(
         res=>{
             const token = res.data.authData.token
-            const role = res.data.authData.role[0]
+            const role = res.data.authData.roles[0]
+            const userId = res.data.authData.id
             localStorage.setItem('role',role)
             localStorage.setItem('jwt',token)
+            localStorage.setItem('userId',userId)
             const decode = jwtDecode(token)
             dispatch( setUser(decode))
             setAuth(token,role)
@@ -42,7 +44,7 @@ export const LoginAction = (form,navigate)=>dispatch=>{
         console.log(form)
         dispatch({   
             type: ERRORS,
-            payload: err.response.data
+            payload: "Failed to log"
         })
     
     })

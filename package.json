@@ -52,6 +52,9 @@
             "last 1 safari version"
         ]
     },
+    "browser": {
+        "[module-name]": false   
+      },
     "devDependencies": {
         "autoprefixer": "^10.4.2",
         "postcss": "^8.4.8",

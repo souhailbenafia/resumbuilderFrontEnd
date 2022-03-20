@@ -35,7 +35,7 @@ function Experiance(props) {
           <div className="w-60 h-24">
             <label className="m-2 ">Nom de l'entreprise</label>
             <input
-            placeholder="Exemple : WeLoveDevs.com (facultatif)"
+            placeholder="Exemple : SouhailDev (facultatif)"
               type="text"
               name="company"
               className="w-60 h-14 p-1 rounded-sm shadow-md"
