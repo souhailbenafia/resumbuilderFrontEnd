@@ -1,5 +1,6 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Certification from '../Components/Common/certification/certification '
+import Listcertification from '../Components/Common/certification/ListCertification'
 import NavBar from '../Components/Common/navBar/NavBar'
 import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
 import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded';
@@ -8,94 +9,120 @@ import axios from 'axios';
 
 function CertificationPage() {
 
-  
-  const [certifications, setCertifications] = useState();
-  const [form,setform] = useState({"UserId" : localStorage.getItem('userId')})
 
-  const onChangeHandler = (e)=>{
+  const [certifications, setCertifications] = useState([]);
+  const [form, setform] = useState({ "UserId": localStorage.getItem('userId') })
+  const [i,seti] = useState(1)
+
+  const onChangeHandler = (e) => {
     setform(
-      {...form,
-      [e.target.name]: e.target.value
-    }
+      {
+        ...form,
+        [e.target.name]: e.target.value
+      }
     )
-   
-  }
 
-  useEffect(async() => {
-    await axios.get(`https://localhost:7154/api/certification/getbyuser?id=${localStorage.getItem('userId')}`).then(res=>{
+  }
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+    e.target.reset();
+   await  axios.post('https://localhost:7154/api/certification/add', form)
+      .then(
+        res => {
+          console.log(res.data.message)
+          setform({ "UserId": localStorage.getItem('userId') })
+        }
+
+
+      )
+     setTimeout(()=>{
+        
+      },500000)
+      
+      seti({...i , i:i})
+
+  }
+  const OnDelete = async (id)=>{
+    await axios.delete(`https://localhost:7154/api/certification/delete?id=${id}`)
+    .then(res=>{
+      
+     
+    
+   }
+    )
+    seti({...i , i:1})
+   }
+
+
+ 
+
+
+   useEffect(async () => {
+      await axios.get(`https://localhost:7154/api/certification/getbyuser?id=${localStorage.getItem('userId')}`).then(res => {
       setCertifications(res.data)
+
+     
 
     })
 
-    
-  }, []);
 
-  const onSubmitHandler = (e)=>{
-    e.preventDefault();
-    axios.post('https://localhost:7154/api/certification/add',form)
-    .then(
-      res=>{
-        console.log(res.data.message)
-        setform({"UserId" : localStorage.getItem('userId')})
-      }
-      
-    )
-   
+  },[i]);
+
   
-  
-  
-  }
   return (
     <div className='bg-gray-50 flex flex-row h-full'>
 
-    <div className=' hidden sm:block w-1/3 min-h-screen 
+      <div className=' hidden sm:block w-1/3 min-h-screen 
       bg-gradient-to-b from-purple-300 to-purple-400
       ' >
-    
-      <img className='h-full bg-scroll w-full' src="https://process.filestackapi.com/resize=width:1000/MFcDeCdsQPakzIKL8ccJ">
-     
-      </img>
-    </div>
-    
-    <div className='w-3/4 min-h-screen overflow-y-auto  flex flex-row'>
+
+        <img className='h-full bg-scroll w-full' src="https://process.filestackapi.com/resize=width:1000/MFcDeCdsQPakzIKL8ccJ">
+
+        </img>
+      </div>
+
+      <div className='w-3/4 min-h-screen overflow-y-auto  flex flex-row'>
 
         <div className='grid grid-cols-1  place-items-center h-full w-1/12'>
-        <Link to={'/education'} className=' grid grid-cols-1  place-items-center p-2 h-14 w-14 rounded-full bg-rose-500'>
-           <ArrowBackIosNewRoundedIcon className='text-white'/>
-           </Link>
+          <Link to={'/education'} className=' grid grid-cols-1  place-items-center p-2 h-14 w-14 rounded-full bg-rose-500'>
+            <ArrowBackIosNewRoundedIcon className='text-white' />
+          </Link>
         </div>
-
-
-
         <div className='w-5/6'>
 
-          
+          <NavBar />
 
-            <NavBar/>
+          <p className='mt-10 ml-5 text-gray-500 font-bold font-serif text-6xl'>3/6</p>
 
-            <p className='mt-10 ml-5 text-gray-500 font-bold font-serif text-6xl'>3/6</p>
+          <h3 className=' mt-10 ml-5 text-2xl text-gray-500 font-bold font-serif'>Vos certifications</h3>
 
-            <h3 className=' mt-10 ml-5 text-2xl text-gray-500 font-bold font-serif'>Vos certifications</h3>
+          <hr className=' mt-6 w-2/3 border mx-auto font-bold ' />
 
-            <hr className= ' mt-6 w-2/3 border mx-auto font-bold '/>
+          <Certification onChangeHandler={onChangeHandler} onSubmitHandler={onSubmitHandler} />
+
+        
+        <div className='mx-auto  w-5/6 grid grid-cols-2 '>
+
+          {certifications.map((list) => (
+            <div key={list.id} className ="flex place-items-center">
+              <Listcertification certif={list} seti={seti}key={list.id} OnDelete={OnDelete}  />
+            </div>
+          ))}
 
 
-              
-
-           <Certification onChangeHandler={onChangeHandler} onSubmitHandler={onSubmitHandler} />
-
+        </div>
         </div>
 
 
 
         <div className=' grid grid-cols-1  place-items-center  h-full w-1/12'>
-           <Link to={'/Interest'} className='   grid grid-cols-1  place-items-center p-2 h-14 w-14 rounded-full bg-rose-500'>
-           <ArrowForwardIosRoundedIcon className='text-white'/>
-           </Link> 
+          <Link to={'/Interest'} className='grid grid-cols-1  place-items-center p-2 h-14 w-14 rounded-full bg-rose-500'>
+            <ArrowForwardIosRoundedIcon className='text-white' />
+          </Link>
         </div>
 
-        </div>
-        </div>
+      </div>
+    </div>
   )
 }
 

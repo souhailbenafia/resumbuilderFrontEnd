@@ -5,6 +5,7 @@ import { Fab } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { grey } from '@mui/material/colors';
 import RemoveCircleRoundedIcon from '@mui/icons-material/RemoveCircleRounded';
+import { LineStyle } from '@mui/icons-material';
 
 const lists =["Angular","Reat","Asp Dotnet Core"]
 
@@ -14,55 +15,25 @@ function Skills(props) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [level, setLevel] = useState('Beginner');
-
-  const handleChangelevel = (e) => {
-    setLevel(e.target.value);
-    setSkillForm
-    ({
-      ...skillForm,
-      [e.target.name] : e.target.value
-    })
-  }
-
-   const  handleChangeSkill=(e)=> {
-      setSkillForm
-      ({
-        ...skillForm,
-        [e.target.name] : e.target.value
-      })
-    }
-
-
-
-    const skillSubmitHandlar=(event)=> {
-
-      event.preventDefault();
-      console.log(skillForm)
-    }
- 
   return (
     <div> 
     <div>
-<Fab onClick={handleOpen} variant="extended" color='inherit'>
-<AddCircleIcon color={grey[200]} sx={{ mr: 1 }} />
-<h5 className='font-bold text-gray-700'> Ajouter</h5>
-</Fab>
 
-<ModelSkill open={open}  skillSubmitHandlar={skillSubmitHandlar}  handleChangeSkill={handleChangeSkill} handleChangelevel={handleChangelevel} handleClose={handleClose}/>
+
+<ModelSkill open={open}  onSubmitHandler={props.onSubmitHandler}  onChangeHandler={props.onChangeHandler} seti={props.seti} handleClose={handleClose}/>
 
 
 </div>
-<div className='flex  space-x-4 '> 
+<div className='grid grid-cols-4 p-4  '> 
 
 
-{lists.map((list) => (
- <div className=" rounded-2xl bg-purple-800 text-center text-white flex flex-row  p-2  w-fit  space-x-4 ">
-          <div className='pt-1'>{list}
+{props.skills.map((list) => (
+ <div  key ={list.id} className=" mt-2 rounded-2xl bg-purple-800 text-center text-white flex flex-row  p-2  w-fit  space-x-4 ">
+          <div className='pt-1'>{list.name }
           </div>
          <div>
          <button>
-          <RemoveCircleRoundedIcon/>
+          <RemoveCircleRoundedIcon onClick={()=>props.OnDelete(list.id)}/>
           </button>
          </div>
           </div>   
@@ -70,8 +41,17 @@ function Skills(props) {
      
   
 </div>
+
+<div className='m-2 mt-5  grid grid-row-1  place-items-end'>
+<Fab onClick={handleOpen} variant="extended" color='inherit'>
+<AddCircleIcon color={grey[200]} sx={{ mr: 1 }} />
+<h5 className='font-bold text-gray-700'> Ajouter</h5>
+</Fab>
+</div>
+
 </div>
   )
+  
 }
 
 

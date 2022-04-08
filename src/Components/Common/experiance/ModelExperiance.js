@@ -1,40 +1,46 @@
 import React from "react";
 import Box from "@mui/material/Box";
-import Slider from "@mui/material/Slider";
+import Modal from "@mui/material/Modal";
+import DoneIcon from "@mui/icons-material/Done";
 import DatePicker from "@mui/lab/DatePicker";
 import TextField from "@mui/material/TextField";
 import { LocalizationProvider } from "@mui/lab";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import DeleteIcon from '@mui/icons-material/Delete';
-import DoneIcon from '@mui/icons-material/Done';
 
-function Experiance(props) {
+
+const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 600,
+    height: 600,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    borderRadius: 5,
+    padding: "50px",
+  };
+const Modelexperiance = (props) => {
+
   const [value, setValue] = React.useState(new Date());
   const [endValue, setEndValue] = React.useState(new Date());
 
-  
-  return (
-    <form className="m-4 "  onSubmit={props.onSubmitHandler} name='experiance'>
-      <h2 className=" text-slate-700 font-serif font-bold  ">
-        Nombre d'années d'expérience en entreprise en tant que développeur
-      </h2>
-      <div className=" m-4">
-        <Box width={700}>
-          <Slider
-            size="medium"
-            defaultValue={5}
-            aria-label="Small"
-            valueLabelDisplay="auto"
-            color="secondary"
-            step={1}
-            max={20}
-            onChange={props.onChangeHandler} 
-            name ="yearsOfExperiance"
-          />
-        </Box>
-      </div>
 
-      <div className="flex flex-col ">
+
+    return (
+        <div>
+                <Modal
+        open={props.open}
+        onClose={props.handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <form className="flex flex-col place-items-center p-8" onSubmit={props.UpdateSubmitHandlar}>
+
+
+          <div className="flex flex-col ">
         <div className=" flex flex-row  space-x-10    ">
           <div className="w-60 h-24">
             <label className="m-2 ">Nom de l'entreprise</label>
@@ -43,6 +49,7 @@ function Experiance(props) {
               type="text"
               name="company"
               className="w-60 h-14 p-1 rounded-sm shadow-md"
+              defaultValue={props.experiance.company}
               onChange={props.onChangeHandler} 
             ></input>
           </div>
@@ -54,6 +61,7 @@ function Experiance(props) {
               name="position"
               className="w-60 h-14 rounded-sm shadow-md"
               onChange={props.onChangeHandler} 
+              defaultValue={props.experiance.position}
             ></input>
           </div>
         </div>
@@ -65,6 +73,8 @@ function Experiance(props) {
             name="Location"
             className="w-60 h-14 rounded-sm shadow-md"
             onChange={props.onChangeHandler} 
+            defaultValue={props.experiance.Location}
+            
           ></input>
         </div>
 
@@ -76,12 +86,13 @@ function Experiance(props) {
               autoOk 
               variant="inline"
                views={['year', 'month']}
+               defaultValue={props.experiance.Start}
                 value={value}
                  onChange={(newValue) => {
                   setValue(newValue)
-                  props.setform(
+                  props.setUpdateForm(
                     {
-                      ...props.form,
+                      ...props.updateForm,
                       "Start": newValue
                     }
                   )
@@ -98,12 +109,13 @@ function Experiance(props) {
               variant="inline"
               autoOk 
                views={['year', 'month']}
+               defaultValue={props.experiance.End}
                 value={endValue}
                 onChange={(newValue) => {
                  setEndValue(newValue)
-                 props.setform(
+                 props.setUpdateForm(
                     {
-                      ...props.form,
+                      ...props.updateForm,
                       "End": newValue
                     }
                   )
@@ -117,6 +129,7 @@ function Experiance(props) {
         <div className="h-40 w-80 ">
           <label>Description du poste</label>
           <textarea
+          defaultValue={props.experiance.description}
             type="text"
             name="description"
             placeholder="Vos compétences et technologies utilisées pour ce poste"
@@ -134,9 +147,13 @@ function Experiance(props) {
         </div>
         
       </div>
-    </form>
-  );
-                      
-              }
+         
+          </form>
+        </Box>
+      </Modal>
+            
+        </div>
+    );
+}
 
-export default Experiance;
+export default Modelexperiance;

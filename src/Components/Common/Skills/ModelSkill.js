@@ -1,3 +1,4 @@
+
 import React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -12,7 +13,7 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: 600,
-  height: 600,
+  height: 400,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -33,14 +34,14 @@ export default function ModelSkill(props) {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Quelles sont vos technos favorites?*
           </Typography>
-          <form className="flex flex-col place-items-center">
+          <form className="flex flex-col place-items-center" onSubmit={props.onSubmitHandler}>
             <div className="   m-2  ">
               <input
                 className="mt-1   rounded-md w-80 h-14"
                 type="text"
-                name="skill"
-                placeholder="Exemple : Anglais"
-                onChange={props.handleChangeSkill}
+                name="name"
+                placeholder="Exemple : React js"
+                onChange={props.onChangeHandler}
               />
             </div>
             <div className="m-2">
@@ -50,7 +51,8 @@ export default function ModelSkill(props) {
                   id="demo-simple-select"
                   value={props.level}
                   name="level"
-                  onChange={props.handleChangelevel}
+                  onChange={props.onChangeHandler}
+                  defaultValue={"Beginner"}
                 >
                   <MenuItem value="Beginner">Beginner </MenuItem>
                   <MenuItem value="Intermediate"> Intermediate </MenuItem>
@@ -62,7 +64,6 @@ export default function ModelSkill(props) {
 
             <div className=" flex  place-items-end   m-2 rounded-xl bg-green-600  p-2 hover:bg-green-500">
               <button 
-                onClick={props.skillSubmitHandlar}
                 type="submit"
                 className="  h-10 shadow-md  text-center text-white"
               >

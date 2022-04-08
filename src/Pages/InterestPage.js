@@ -1,11 +1,57 @@
-import React from 'react'
-import Interest from '../Components/Common/Interset/Interest'
+import React, { useState, useEffect } from 'react'
+import Interest from "../Components/Common/Interset/Interest"
 import NavBar from '../Components/Common/navBar/NavBar'
 import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
 import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import ListInterest from '../Components/Common/Interset/ListInterest';
 
 function InterestPage() {
+  const [intersets, setintersets] = useState([]);
+  const [form, setform] = useState({ "UserId": localStorage.getItem('userId') })
+  const [i,seti] = useState(1)
+
+  const onChangeHandler = (e) => {
+    setform(
+      {
+        ...form,
+        [e.target.name]: e.target.value
+      }
+    )
+
+  }
+
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+    e.target.reset();
+   await  axios.post('https://localhost:7154/api/interest/add', form)
+      .then(
+        res => {
+          console.log(res.data.message)
+          setform({ "UserId": localStorage.getItem('userId') })
+        }
+      )
+     setTimeout(()=>{
+        
+      },500000)
+      
+      seti({...i , i:i})
+
+  }
+  const OnDelete = async (id)=>{
+    await axios.delete(`https://localhost:7154/api/interest/delete?id=${id}`)
+    .then(res=>{
+   }
+    )
+    seti({...i , i:1})
+   }
+   useEffect(async () => {
+      await axios.get(`https://localhost:7154/api/interest/getbyuser?id=${localStorage.getItem('userId')}`).then(res => {
+        setintersets(res.data)
+
+    })
+  },[i]);
   return (
     <div className='bg-gray-50 flex flex-row h-full'>
 
@@ -43,7 +89,19 @@ function InterestPage() {
 
               
 
-           <Interest/>
+           <Interest onChangeHandler={onChangeHandler} onSubmitHandler={onSubmitHandler} />
+
+           <div className='mx-auto  w-5/6 grid grid-cols-2 '>
+
+          {intersets.map((list) => (
+            <div key={list.id} className ="flex place-items-center">
+              <ListInterest interest={list} seti={seti}key={list.id} OnDelete={OnDelete}  />
+            </div>
+          ))}
+
+
+        </div>
+
 
         </div>
 

@@ -1,12 +1,66 @@
-import React from 'react'
+import React ,{ useState, useEffect }from 'react'
 import Certification from '../Components/Common/certification/certification '
 import NavBar from '../Components/Common/navBar/NavBar'
 import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
 import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded';
 import { Link } from 'react-router-dom';
 import Project from '../Components/Common/projects/Project';
+import axios from 'axios';
+import ListProject from '../Components/Common/projects/ListProject';
 
 function ProjectPage() {
+
+  const [projects, setProjects] = useState([]);
+  const [form, setform] = useState({ "UserId": localStorage.getItem('userId') })
+  const [i, seti] = useState(1)
+
+  
+  const onChangeHandler = (e) => {
+    setform(
+      {
+        ...form,
+        [e.target.name]: e.target.value
+      }
+    )
+
+  }
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+    e.target.reset();
+    console.log(form)
+    await axios.post('https://localhost:7154/api/project/add', form)
+      .then(
+        res => {
+          console.log(res.data.message)
+          setform({ "UserId": localStorage.getItem('userId') })
+        }
+      )
+    setTimeout(() => {
+
+    }, 500000)
+
+    seti({ ...i, i: i })
+
+  }
+  const OnDelete = async (id) => {
+    await axios.delete(`https://localhost:7154/api/project/delete?id=${id}`)
+      .then(res => {
+
+      }
+      )
+    seti({ ...i, i: 1 })
+  }
+  useEffect(async () => {
+    await axios.get(`https://localhost:7154/api/project/getbyuser?id=${localStorage.getItem('userId')}`).then(res => {
+      setProjects(res.data)
+
+
+
+    })
+
+
+  }, [i]);
+
   return (
     <div className='bg-gray-50 flex flex-row h-full'>
 
@@ -30,9 +84,7 @@ function ProjectPage() {
 
 
         <div className='w-5/6'>
-
-          
-
+   
             <NavBar/>
 
             <p className='mt-10 ml-5 text-gray-500 font-bold font-serif text-6xl'>3/6</p>
@@ -44,8 +96,18 @@ function ProjectPage() {
 
               
 
-           <Project/>
+           <Project form={form} setform={setform} onChangeHandler={onChangeHandler} onSubmitHandler={onSubmitHandler}/>
 
+           <div className='mx-auto  w-5/6 grid grid-cols-2 '>
+
+{projects.map((list) => (
+  <div key={list.id} className="flex place-items-center">
+    <ListProject project={list} seti={seti}  OnDelete={OnDelete} />
+  </div>
+))}
+
+
+</div>
         </div>
 
 

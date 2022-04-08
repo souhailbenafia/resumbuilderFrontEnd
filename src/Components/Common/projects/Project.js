@@ -10,9 +10,9 @@ import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { FormControl } from '@mui/material';
 
 function Project(props) {
-    const [value, setValue] = React.useState(null);
+    const [value, setValue] = React.useState(new Date());
   return (
-    <form className="flex flex-col ">
+    <form className="flex flex-col " onSubmit={props.onSubmitHandler}> 
         <div className=" flex flex-row  space-x-10    ">
           <div className="w-60 h-24">
             <label className="m-2 ">Nom du projet</label>
@@ -21,6 +21,7 @@ function Project(props) {
               type="text"
               name="name"
               className="w-60 h-14 p-1 rounded-sm shadow-md"
+              onChange={props.onChangeHandler} 
             ></input>
           </div>
           <div className="w-60 h-24 ">
@@ -30,38 +31,43 @@ function Project(props) {
               type="text"
               name="link"
               className="w-60 h-14 rounded-sm shadow-md"
+              onChange={props.onChangeHandler} 
             ></input>
           </div>
         </div>
-
-     
-
         <div className=" w-60 h-24    ">
 
           
             <label className="m-2 ">Date de creation</label>
-            <FormControl className='bg-white'>
+           
             <LocalizationProvider dateAdapter={AdapterDateFns} className="bg-white">
               <DatePicker
               name="date"
               color="'#fff"
+
                views={['year', 'month']}
                 value={value}
                 onChange={(newValue) => {
                   setValue(newValue);
+                  props.setform(
+                    {
+                      ...props.form,
+                      "date": newValue
+                    }
+                  )
                 }}
-                renderInput={(params) => <TextField {...params} />}
+                renderInput={(params) => <TextField  className='bg-white'{...params} />}
               />
             </LocalizationProvider>
-            </FormControl>
+        
           </div>
 
         <div className="h-40 w-80 ">
           <label>Description du projet</label>
           <textarea
-            
+            onChange={props.onChangeHandler} 
             type="text"
-            name="descroption"
+            name="description"
             placeholder="Vos compétences et technologies utilisées pour ce poste"
             className="w-80 h-32 rounded-sm  p-1 shadow-md"
           ></textarea>
