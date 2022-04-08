@@ -6,9 +6,13 @@ import { FormControl, MenuItem, Select } from '@mui/material';
 function Langue(props) {
   return (
     <form className='flex flex-col items-center'onSubmit={props.onSubmitHandler}>
-            <div className='  shadow-md  m-2 w-80 ' >
-            <input  onChange={props.onChangeHandler} name='Languge' className='mt-1   rounded-md w-80 h-14' type ="text"  placeholder='Exemple : Anglais'/>
+            <div className='   m-2 w-80 ' >
+            <input  onChange={props.onChangeHandler} name='Languge' className='mt-1  shadow-md  rounded-md w-80 h-14' type ="text"  placeholder='Exemple : Anglais'/>
+            {props.errors.Languge && (  <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+            {props.errors.Languge}
+        </span>)}
             </div>
+           
  
         <div className=' m-2 space-y-4 '>
               <FormControl className="shadow-md bg-white m-2 w-80 ">
@@ -26,6 +30,9 @@ function Langue(props) {
                   <MenuItem value="c1"> c1 </MenuItem>
                 </Select>
               </FormControl>
+              {props.errors.Niveau && (  <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+            {props.errors.Niveau}
+        </span>)}
 
               <div>
               <FormControl className="shadow-md bg-white  m-2 w-80">
@@ -42,6 +49,9 @@ function Langue(props) {
                   <MenuItem value="Expert">Expert</MenuItem>
                 </Select>
               </FormControl>
+              {props.errors.Fluency && (  <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+            {props.errors.Fluency}
+        </span>)}
             </div>
             <div  className=" flex flex-row justify-end ">
         

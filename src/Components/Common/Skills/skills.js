@@ -20,7 +20,7 @@ function Skills(props) {
     <div>
 
 
-<ModelSkill open={open}  onSubmitHandler={props.onSubmitHandler}  onChangeHandler={props.onChangeHandler} seti={props.seti} handleClose={handleClose}/>
+<ModelSkill error={props.errors} open={open}  onSubmitHandler={props.onSubmitHandler}  onChangeHandler={props.onChangeHandler} seti={props.seti} handleClose={handleClose}/>
 
 
 </div>

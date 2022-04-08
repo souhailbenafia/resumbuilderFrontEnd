@@ -8,6 +8,8 @@ import axios from 'axios';
 import ListInterest from '../Components/Common/Interset/ListInterest';
 
 function InterestPage() {
+  const initialValues = { name: ""};
+  const [error,setError]=useState(initialValues)
   const [intersets, setintersets] = useState([]);
   const [form, setform] = useState({ "UserId": localStorage.getItem('userId') })
   const [i,seti] = useState(1)
@@ -31,7 +33,10 @@ function InterestPage() {
           console.log(res.data.message)
           setform({ "UserId": localStorage.getItem('userId') })
         }
-      )
+      ).catch(err=>{
+
+        setError(err.response.data.errors);
+     })
      setTimeout(()=>{
         
       },500000)
@@ -89,7 +94,7 @@ function InterestPage() {
 
               
 
-           <Interest onChangeHandler={onChangeHandler} onSubmitHandler={onSubmitHandler} />
+           <Interest onChangeHandler={onChangeHandler} onSubmitHandler={onSubmitHandler} errors={error} />
 
            <div className='mx-auto  w-5/6 grid grid-cols-2 '>
 

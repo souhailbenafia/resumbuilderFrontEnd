@@ -9,6 +9,8 @@ import axios from 'axios';
 import Listexperiance from '../Components/Common/experiance/ListExperiance';
 
 function ExperiancePage() {
+  const initialValues = { company: "",position: "", Location: "" ,Start:"",End:"",description:""};
+  const [error,setError]=useState(initialValues)
 
   const [expeiances, setExpeiances] = useState([]);
   const [form, setform] = useState({ "UserId": localStorage.getItem('userId') })
@@ -33,7 +35,10 @@ function ExperiancePage() {
           console.log(res.data.message)
           setform({ "UserId": localStorage.getItem('userId') })
         }
-      )
+      ).catch(err=>{
+
+        setError(err.response.data.errors);
+     })
     setTimeout(() => {
 
     }, 500000)
@@ -99,7 +104,7 @@ function ExperiancePage() {
 
 
 
-          <Experiance form={form} setform={setform} onChangeHandler={onChangeHandler} onSubmitHandler={onSubmitHandler} />
+          <Experiance form={form} setform={setform} onChangeHandler={onChangeHandler} onSubmitHandler={onSubmitHandler}  errors={error} />
 
           <div className='mx-auto  w-5/6 grid grid-cols-2 '>
 

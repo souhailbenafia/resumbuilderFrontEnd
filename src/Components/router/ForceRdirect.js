@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom'
 
 const  ForceRdirect =({user,children})=> {
     if(user.isConnected){
-        return <Navigate to="/login" replace/>
+        return <Navigate to="/" replace/>
     }
     return children
 }

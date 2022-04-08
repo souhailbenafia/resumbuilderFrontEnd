@@ -9,10 +9,13 @@ import axios from 'axios';
 import ListLangue from '../Components/Common/Language/ListLangue';
 
 function Languepage() {
+  const initialValues = { Languge: "",Fluency: "", Niveau: "" };
 
   const [langues, setLangues] = useState([]);
   const [form, setform] = useState({ "UserId": localStorage.getItem('userId') })
   const [i,seti] = useState(1)
+
+ const [error,setError]=useState(initialValues)
 
   const onChangeHandler = (e) => {
     setform(
@@ -26,15 +29,22 @@ function Languepage() {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     e.target.reset();
-   await  axios.post('https://localhost:7154/api/language/add', form)
+  await  axios.post('https://localhost:7154/api/language/add', form)
       .then(
         res => {
-          console.log(res.data.message)
+          
           setform({ "UserId": localStorage.getItem('userId') })
+          setError(initialValues);
         }
 
+        
 
-      )
+
+      ).catch(err=>{
+
+       setError(err.response.data.errors);
+    })
+     
      setTimeout(()=>{
         
       },500000)
@@ -60,7 +70,7 @@ function Languepage() {
     })
 
 
-  },[i]);
+  },[i,error]);
 
   return (
     <div className='bg-gray-50 flex flex-row h-full'>
@@ -99,7 +109,7 @@ function Languepage() {
 
               
 
-           <Langue onChangeHandler={onChangeHandler} onSubmitHandler={onSubmitHandler}/>
+           <Langue onChangeHandler={onChangeHandler} onSubmitHandler={onSubmitHandler} errors={error}/>
            <div className='mx-auto  w-5/6 grid grid-cols-2 '>
 
 {langues.map((list) => (

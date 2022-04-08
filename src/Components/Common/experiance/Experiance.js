@@ -15,26 +15,9 @@ function Experiance(props) {
   
   return (
     <form className="m-4 "  onSubmit={props.onSubmitHandler} name='experiance'>
-      <h2 className=" text-slate-700 font-serif font-bold  ">
-        Nombre d'années d'expérience en entreprise en tant que développeur
-      </h2>
-      <div className=" m-4">
-        <Box width={700}>
-          <Slider
-            size="medium"
-            defaultValue={5}
-            aria-label="Small"
-            valueLabelDisplay="auto"
-            color="secondary"
-            step={1}
-            max={20}
-            onChange={props.onChangeHandler} 
-            name ="yearsOfExperiance"
-          />
-        </Box>
-      </div>
-
-      <div className="flex flex-col ">
+     
+   
+ <div className="flex flex-col ">
         <div className=" flex flex-row  space-x-10    ">
           <div className="w-60 h-24">
             <label className="m-2 ">Nom de l'entreprise</label>
@@ -45,6 +28,9 @@ function Experiance(props) {
               className="w-60 h-14 p-1 rounded-sm shadow-md"
               onChange={props.onChangeHandler} 
             ></input>
+             {props.errors.Company && (  <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+            {props.errors.Company}
+        </span>)}
           </div>
           <div className="w-60 h-24 ">
             <label className="m-2">Intitulé du poste</label>
@@ -55,6 +41,9 @@ function Experiance(props) {
               className="w-60 h-14 rounded-sm shadow-md"
               onChange={props.onChangeHandler} 
             ></input>
+             {props.errors.Position && (  <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+            {props.errors.Position}
+        </span>)}
           </div>
         </div>
 
@@ -66,6 +55,9 @@ function Experiance(props) {
             className="w-60 h-14 rounded-sm shadow-md"
             onChange={props.onChangeHandler} 
           ></input>
+           {props.errors.Location && (  <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+            {props.errors.Location}
+        </span>)}
         </div>
 
         <div className=" flex flex-row mt-10  h-24 space-x-10  ">
@@ -90,6 +82,9 @@ function Experiance(props) {
                 renderInput={(params) => <TextField value={value}className="bg-white shadow-md rounded-md" name="Start" onChange={props.onChangeHandler}  {...params} />}
               />
             </LocalizationProvider>
+            {props.errors.Start && (  <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+            {props.errors.Start}
+        </span>)}
           </div>
           <div className="w-60 h-40">
             <label className="m-2">Fin du poste</label>
@@ -111,6 +106,9 @@ function Experiance(props) {
                 renderInput={(params) => <TextField value={endValue} className="bg-white shadow-md rounded-md" name="End" onChange={props.onChangeHandler} {...params} />}
               />
             </LocalizationProvider>
+            {props.errors.End && (  <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+            {props.errors.End}
+        </span>)}
           </div>
         </div>
 
@@ -123,6 +121,9 @@ function Experiance(props) {
             className="w-80 h-32 rounded-sm  p-1 shadow-md"
             onChange={props.onChangeHandler}
           ></textarea>
+           {props.errors.Description && (  <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+            {props.errors.Description}
+        </span>)}
         </div>
 
         <div  className=" flex flex-row justify-end ">

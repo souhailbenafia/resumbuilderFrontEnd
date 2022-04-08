@@ -10,6 +10,9 @@ import axios from 'axios';
 
 function SkillsPage() {
 
+  const initialValues = { name: "",level: ""};
+  const [error,setError]=useState(initialValues)
+
 
 
   const [skills, setskills] = useState([]);
@@ -30,13 +33,15 @@ function SkillsPage() {
     e.target.reset();
    await  axios.post('https://localhost:7154/api/skill/add', form)
       .then(
-        res => {
-          console.log(res.data.message)
+        res => {  setError(initialValues);
           setform({ "UserId": localStorage.getItem('userId') })
         }
 
 
-      )
+      ).catch(err=>{
+
+        setError(err.response.data.errors);
+     })
      setTimeout(()=>{
         
       },500000)
@@ -103,6 +108,7 @@ function SkillsPage() {
            onSubmitHandler={onSubmitHandler}
            skills={skills}
            OnDelete={OnDelete}
+           errors={error}
             />
 
         </div>

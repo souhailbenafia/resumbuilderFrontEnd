@@ -2,9 +2,21 @@ import axios from "axios";
 import { ERRORS, SET_USER } from "../reducers/types";
 import jwtDecode from "jwt-decode";
 import { setAuth } from "../../../util/setauth";
+import { ToastContainer, toast } from "react-toastify";
+
+const generateError = (error) =>
+toast.error(error, {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    });
 
 export const Registration = (form,navigate)=>dispatch=>{
-axios.post("https://localhost:7154/api/authentication/register",form)
+    axios.post("https://localhost:7154/api/authentication/register",form)
 .then(
     res=>{
         navigate('/login')
@@ -16,7 +28,6 @@ axios.post("https://localhost:7154/api/authentication/register",form)
     }
 )
 .catch(err=>{
-    console.log(form)
     dispatch({ 
         type: ERRORS,
         payload: err.response.data
@@ -25,8 +36,10 @@ axios.post("https://localhost:7154/api/authentication/register",form)
 })
 }
 export const LoginAction = (form,navigate)=>dispatch=>{
-    axios.post("https://localhost:7154/api/authentication/login",form)
-    .then(
+    const { data } =   axios.post("https://localhost:7154/api/authentication/login",form)
+   
+
+    .then(   
         res=>{
             const token = res.data.authData.token
             const role = res.data.authData.roles[0]
@@ -41,15 +54,27 @@ export const LoginAction = (form,navigate)=>dispatch=>{
         }
     )
     .catch(err=>{
-        console.log(form)
+        
         dispatch({   
             type: ERRORS,
-            payload: "Failed to log"
+            payload: err.response.data
+            
         })
     
     })
 
     }
+
+    export const Logout = ()=>dispatch=>{
+        localStorage.removeItem('role')
+        localStorage.removeItem('jwt')
+        localStorage.removeItem('userId')
+        dispatch({
+            type: SET_USER,
+            payload: {}
+        })
+    }
+
     
     export const setUser=(decode)=>({
         type : SET_USER,

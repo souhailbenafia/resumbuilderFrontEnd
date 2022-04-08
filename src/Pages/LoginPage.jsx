@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState ,useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -15,28 +15,68 @@ import {useDispatch,useSelector} from 'react-redux'
 import { LoginAction, Registration } from "../Components/redux/actions/authAction";
 import Inputs from'../Components/Common/inputs'
 import {useNavigate} from 'react-router-dom'
+
 const theme = createTheme();
 
+
+const validate = (values) => {
+  const errors = {};
+  const regex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+  if (!values.username) {
+    errors.username = "username is required!";
+  } 
+  if (!values.password) {
+    errors.password = "Password is required";
+  } else if (values.password.length < 4) {
+    errors.password = "Password must be more than 4 characters";
+  } 
+  return errors;
+};
+
+
+
 function LoginPage() {
+  const initialValues = { username: "", password: "" };
+
+ 
+
+  
 
 
-  const [form, setForm] = useState({})
-  const errors = useSelector(state=>state.errors)
+  const [form, setForm] = useState(initialValues)
+  const [formErrors, setFormErrors] = useState({});
+ // const [error,setError]= useState()
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const error = useSelector(state => state.error.error.error)
+
+  
 
   const OnChangeHandler = (e)=>{
+    const { name, value } = e.target;
     setForm({
       ...form,
-      [e.target.name] : e.target.value
+      [name]: value 
     })
+    setFormErrors(validate(form));
   }
 
   const handleSubmit = (event) => {
+
     event.preventDefault();
+    setFormErrors(validate(form));
+    if (Object.keys(formErrors).length === 0 ) {
     dispatch(LoginAction(form,navigate));
+    }
+
+    
     
   };
+
+  useEffect(() => {
+    
+   
+  }, [formErrors]);
   return (
    
     <div className=" grid grid-cols-1 sm:grid-cols-2">
@@ -61,7 +101,7 @@ function LoginPage() {
                 <LockOutlinedIcon />
               </Avatar>
               <Typography component="h1" variant="h5">
-                Sign up
+                Sign in
               </Typography>
               <Box
                 component="form"
@@ -73,10 +113,10 @@ function LoginPage() {
                 <Grid  container spacing={2}>
                 
                   
-                  <Inputs  label="Email" name="username" type="email" icon="fa-solid fa-user" OnChangeHandler={OnChangeHandler}/>
+                  <Inputs  label="Email" name="username" type="email" icon="fa-solid fa-user" OnChangeHandler={OnChangeHandler} errors={formErrors.username}/>
               
 
-                  <Inputs  label="Password" name="Password" type="password" icon="fa-solid fa-user" OnChangeHandler={OnChangeHandler}/>
+                  <Inputs  label="Password" name="password" type="password" icon="fa-solid fa-user" OnChangeHandler={OnChangeHandler} errors={formErrors.password}/>
                   </Grid>
                 <Button
                   type="submit"
@@ -92,8 +132,16 @@ function LoginPage() {
                       Already have an account? Sign in
                     </Link>
                   </Grid>
+
+                  
                 </Grid>
               </Box>
+              {error && (
+                 <span className="flex  font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+             {error}
+             </span>)}
+             
+              
             </Box>
           </Container>
         </ThemeProvider>

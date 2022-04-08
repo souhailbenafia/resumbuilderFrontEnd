@@ -9,9 +9,12 @@ function Interest(props) {
       <div className='flex flex-row'>
 
         <div>
-          <div className='  shadow-md  m-2 w-80 '>
-            <input onChange={props.onChangeHandler} className='mt-1   rounded-md w-80 h-14' type="text" name='name' placeholder='Exemple : Anglais' />
+          <div className='    m-2 w-80 '>
+            <input onChange={props.onChangeHandler} className='mt-1 shadow-md  rounded-md w-80 h-14' type="text" name='name' placeholder='Exemple : Anglais' />
           </div>
+          {props.errors.Name && (  <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+            {props.errors.Name}
+        </span>)}
         </div>
         <div className='  w-10 m-2 pt-4 '>
           <button type="submit" className='rounded-xl bg-green-500  p-2 hover:bg-green-600   shadow-md  text-center text-white'><DoneIcon fontSize='small' color='inherit' /></button>

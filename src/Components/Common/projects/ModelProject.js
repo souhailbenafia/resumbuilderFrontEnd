@@ -58,31 +58,7 @@ export default function ModelProject(props) {
                                 ></input>
                             </div>
                         </div>
-                        <div className=" w-60 h-24    ">
-
-
-                            <label className="m-2 ">Date de creation</label>
-                            <FormControl className='bg-white'>
-                                <LocalizationProvider dateAdapter={AdapterDateFns} className="bg-white">
-                                    <DatePicker
-                                        name="date"
-                                        color="'#fff"
-                                        views={['year', 'month']}
-                                        defaultValue={props.project.date}
-                                        onChange={(newValue) => {
-                                            setValue(newValue);
-                                            props.setUpdateForm(
-                                                {
-                                                  ...props.updateForm,
-                                                    "Date": newValue
-                                                }
-                                            )
-                                        }}
-                                        renderInput={(params) => <TextField {...params} />}
-                                    />
-                                </LocalizationProvider>
-                            </FormControl>
-                        </div>
+                       
 
                         <div className="h-40 w-80 ">
                             <label>Description du projet</label>

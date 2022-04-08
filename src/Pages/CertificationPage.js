@@ -9,6 +9,10 @@ import axios from 'axios';
 
 function CertificationPage() {
 
+  const initialValues = { name: "",AquisationDate: "", Source: "" };
+
+  const [error,setError]=useState(initialValues)
+
 
   const [certifications, setCertifications] = useState([]);
   const [form, setform] = useState({ "UserId": localStorage.getItem('userId') })
@@ -29,12 +33,15 @@ function CertificationPage() {
    await  axios.post('https://localhost:7154/api/certification/add', form)
       .then(
         res => {
-          console.log(res.data.message)
+          setError(initialValues);
           setform({ "UserId": localStorage.getItem('userId') })
         }
 
 
-      )
+      ).catch(err=>{
+
+        setError(err.response.data.errors);
+     })
      setTimeout(()=>{
         
       },500000)
@@ -66,7 +73,7 @@ function CertificationPage() {
     })
 
 
-  },[i]);
+  },[i,error]);
 
   
   return (
@@ -98,7 +105,7 @@ function CertificationPage() {
 
           <hr className=' mt-6 w-2/3 border mx-auto font-bold ' />
 
-          <Certification onChangeHandler={onChangeHandler} onSubmitHandler={onSubmitHandler} />
+          <Certification onChangeHandler={onChangeHandler} onSubmitHandler={onSubmitHandler}  errors={error}/>
 
         
         <div className='mx-auto  w-5/6 grid grid-cols-2 '>

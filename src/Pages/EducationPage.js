@@ -11,6 +11,8 @@ import Listeducation from '../Components/Common/formation/ListEducation';
 
 
 function EducationPage() {
+  const initialValues = { University: "",Debut: "", End: "" ,Diploma:""};
+  const [error,setError]=useState(initialValues)
 
   const [educations, setEducationList] = useState([])
   const [form, setform] = useState({ "UserId": localStorage.getItem('userId') })
@@ -53,12 +55,15 @@ function EducationPage() {
     await axios.post('https://localhost:7154/api/education/add', form)
       .then(
         res => {
-          console.log(res.data.message)
+          setError(initialValues);
           setform({ "UserId": localStorage.getItem('userId') })
         }
 
 
-      )
+      ).catch(err=>{
+
+        setError(err.response.data.errors);
+     })
     setTimeout(() => {
 
     }, 500000)
@@ -104,7 +109,7 @@ function EducationPage() {
 
 
           <div >
-            <Formation onChangeHandler={onChangeHandler} handleSubmit={handleSubmit} />
+            <Formation onChangeHandler={onChangeHandler} handleSubmit={handleSubmit} errors={error}/>
           </div>
           <div className='mx-auto  w-5/6 grid grid-cols-2 '>
 

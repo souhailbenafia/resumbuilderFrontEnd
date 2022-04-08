@@ -43,6 +43,9 @@ export default function ModelSkill(props) {
                 placeholder="Exemple : React js"
                 onChange={props.onChangeHandler}
               />
+               {props.error.Name && (  <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+            {props.error.Name}
+        </span>)}
             </div>
             <div className="m-2">
               <FormControl className="shadow-md  m-2 w-80">
@@ -60,6 +63,9 @@ export default function ModelSkill(props) {
                   <MenuItem value="Expert">Expert</MenuItem>
                 </Select>
               </FormControl>
+              {props.error.Level && (  <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+            {props.error.Level}
+        </span>)}
             </div>
 
             <div className=" flex  place-items-end   m-2 rounded-xl bg-green-600  p-2 hover:bg-green-500">

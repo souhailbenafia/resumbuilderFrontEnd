@@ -23,6 +23,9 @@ function Project(props) {
               className="w-60 h-14 p-1 rounded-sm shadow-md"
               onChange={props.onChangeHandler} 
             ></input>
+             {props.errors.Name && (  <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+            {props.errors.Name}
+        </span>)}
           </div>
           <div className="w-60 h-24 ">
             <label className="m-2">Lien du projet</label>
@@ -33,35 +36,12 @@ function Project(props) {
               className="w-60 h-14 rounded-sm shadow-md"
               onChange={props.onChangeHandler} 
             ></input>
+             {props.errors.link && (  <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+            {props.errors.link}
+        </span>)}
           </div>
         </div>
-        <div className=" w-60 h-24    ">
-
-          
-            <label className="m-2 ">Date de creation</label>
-           
-            <LocalizationProvider dateAdapter={AdapterDateFns} className="bg-white">
-              <DatePicker
-              name="date"
-              color="'#fff"
-
-               views={['year', 'month']}
-                value={value}
-                onChange={(newValue) => {
-                  setValue(newValue);
-                  props.setform(
-                    {
-                      ...props.form,
-                      "date": newValue
-                    }
-                  )
-                }}
-                renderInput={(params) => <TextField  className='bg-white'{...params} />}
-              />
-            </LocalizationProvider>
         
-          </div>
-
         <div className="h-40 w-80 ">
           <label>Description du projet</label>
           <textarea
@@ -71,6 +51,9 @@ function Project(props) {
             placeholder="Vos compétences et technologies utilisées pour ce poste"
             className="w-80 h-32 rounded-sm  p-1 shadow-md"
           ></textarea>
+           {props.errors.Description && (  <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+            {props.errors.Description}
+        </span>)}
         </div>
 
         <div  className=" flex flex-row justify-end ">

@@ -2,6 +2,7 @@ import { ERRORS } from "./types";
 
 
 const initialState={
+    error :""
    
 }
 
@@ -9,7 +10,10 @@ const initialState={
 export default function(state = initialState , action){
     switch(action.type){
         case ERRORS:
-            return action.payload
+            return {
+                ...state,
+               error: action.payload
+              };
         default : return state;
 
     }

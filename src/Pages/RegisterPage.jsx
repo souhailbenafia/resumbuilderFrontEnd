@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -24,12 +24,43 @@ import {useNavigate} from 'react-router-dom'
 
 const theme = createTheme();
 
+const validate = (values) => {
+  const errors = {};
+  const regex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+  if (!values.firstName) {
+    errors.firstName = " firstName! is required!";
+  } 
+  if (!values.lastName) {
+    errors.lastName = "lastName is required!";
+  } 
+  if (!values.genre) {
+    errors.genre = "genre is required!";
+  } 
+  // if (!values.Birthdate) {
+  //   errors.Birthdate = "Birthdate is required!";
+  // } 
+  if (!values.email) {
+    errors.email = "email is required!";
+  } 
+  if (!values.Phone) {
+    errors.Phone = "PhoneNumber is required!";
+  } 
+  if (!values.password) {
+    errors.password = "Password is required";
+  } else if (values.password.length < 4) {
+    errors.password = "Password must be more than 4 characters";
+  } 
+  return errors;
+};
+
+
 const Registerpage = () => {
   const [form, setForm] = useState({})
+  const [formErrors, setFormErrors] = useState({});
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const errors = useSelector(state=>state.errors)
+  const error = useSelector(state => state.error.error.title)
   const [dateNaissance, setdateNaissance] = useState(new Date());
   const [genre, setGenre] = useState("");
 
@@ -50,9 +81,15 @@ const Registerpage = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setFormErrors(validate(form));
+    if (Object.keys(formErrors).length === 0 ) {
     dispatch(Registration(form,navigate));
+    }
     
   };
+  useEffect(() => {
+   
+  }, [formErrors]);
   return (
     <div className=" grid grid-cols-1 sm:grid-cols-2">
       <div className=" hidden sm:block h-screen w-full">
@@ -97,6 +134,9 @@ const Registerpage = () => {
                       autoFocus
                       onChange={OnChangeHandler}
                     />
+                     <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+            {formErrors.firstName}
+        </span>
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <TextField
@@ -108,6 +148,9 @@ const Registerpage = () => {
                       autoComplete="family-name"
                       onChange={OnChangeHandler}
                     />
+                          <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+            {formErrors.lastName}
+        </span>
                   </Grid>
 
                   <Grid item xs={12}>
@@ -134,6 +177,9 @@ const Registerpage = () => {
                         <MenuItem value="Autre">Autre</MenuItem>
                       </Select>
                     </FormControl>
+                    <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+            {formErrors.genre}
+        </span>
                   </Grid>
 
                   <Grid item xs={12}>
@@ -152,13 +198,17 @@ const Registerpage = () => {
                         )}
                       />
                     </LocalizationProvider>
+                    <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+            {formErrors.Birthdate}
+        </span>
                   </Grid>
                   
                   
-                  <Inputs  label="Email" name="email" type="email" icon="fa-solid fa-user" OnChangeHandler={OnChangeHandler}/>
-              
+                  <Inputs  label="Email" name="email" type="email" icon="fa-solid fa-user" OnChangeHandler={OnChangeHandler} errors={formErrors.email}/>
 
-                  <Inputs  label="Password" name="Password" type="password" icon="fa-solid fa-user" OnChangeHandler={OnChangeHandler}/>
+                  <Inputs  label="Phone number" name="Phone" type="number" icon="fa-solid fa-user" OnChangeHandler={OnChangeHandler} errors={formErrors.PhoneNumber}/>
+              
+                  <Inputs  label="Password" name="password" type="password" icon="fa-solid fa-user" OnChangeHandler={OnChangeHandler} errors={formErrors.password}/>
                 </Grid>
                 <Button
                   type="submit"
@@ -176,6 +226,10 @@ const Registerpage = () => {
                   </Grid>
                 </Grid>
               </Box>
+              {error && (
+                 <span className="flex  font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+             {error}
+             </span>)}
             </Box>
           </Container>
         </ThemeProvider>

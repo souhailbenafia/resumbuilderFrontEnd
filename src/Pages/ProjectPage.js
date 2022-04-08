@@ -9,6 +9,8 @@ import axios from 'axios';
 import ListProject from '../Components/Common/projects/ListProject';
 
 function ProjectPage() {
+  const initialValues = { Name: "",link: "", Description: ""};
+  const [error,setError]=useState(initialValues)
 
   const [projects, setProjects] = useState([]);
   const [form, setform] = useState({ "UserId": localStorage.getItem('userId') })
@@ -31,10 +33,13 @@ function ProjectPage() {
     await axios.post('https://localhost:7154/api/project/add', form)
       .then(
         res => {
-          console.log(res.data.message)
+          setError(initialValues);
           setform({ "UserId": localStorage.getItem('userId') })
         }
-      )
+      ).catch(err=>{
+
+        setError(err.response.data.errors);
+     })
     setTimeout(() => {
 
     }, 500000)
@@ -96,7 +101,7 @@ function ProjectPage() {
 
               
 
-           <Project form={form} setform={setform} onChangeHandler={onChangeHandler} onSubmitHandler={onSubmitHandler}/>
+           <Project errors={error} form={form} setform={setform} onChangeHandler={onChangeHandler} onSubmitHandler={onSubmitHandler}/>
 
            <div className='mx-auto  w-5/6 grid grid-cols-2 '>
 
