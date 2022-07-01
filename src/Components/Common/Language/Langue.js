@@ -20,7 +20,7 @@ function Langue(props) {
                   defaultValue={"A1"}
                   name="Niveau"
                   onChange={props.onChangeHandler}
-                  placeholder="Choisir votre Niveau"
+                  placeholder="Choose your Level"
                 >
                   <MenuItem value="A1">A1 </MenuItem>
                   <MenuItem value="A2"> A2 </MenuItem>
@@ -41,7 +41,7 @@ function Langue(props) {
                  
                   name="Fluency"
                   onChange={props.onChangeHandler}
-                  placeholder="Choisir votre Niveau"
+                  placeholder="Choose your Level"
                 >
                   <MenuItem value="Beginner">Beginner </MenuItem>
                   <MenuItem value="Intermediate"> Intermediate </MenuItem>

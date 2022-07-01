@@ -10,7 +10,7 @@ function Interest(props) {
 
         <div>
           <div className='    m-2 w-80 '>
-            <input onChange={props.onChangeHandler} className='mt-1 shadow-md  rounded-md w-80 h-14' type="text" name='name' placeholder='Exemple : Anglais' />
+            <input onChange={props.onChangeHandler} className='mt-1 shadow-md  rounded-md w-80 h-14' type="text" name='name' placeholder='Exemple : Football' />
           </div>
           {props.errors.Name && (  <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
             {props.errors.Name}

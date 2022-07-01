@@ -43,7 +43,7 @@ const ListProject=(props)=> {
 
         <div>
       <p className ="m-2 text-sm text-gray-500 font-bold font-serif">
-        Nom du Projet:
+        Projet:
         </p>
         <p className ="m-2 ml-6  text-md text-purple-800 font-bold font-serif">{props.project.name}</p>
         </div>
@@ -51,13 +51,13 @@ const ListProject=(props)=> {
 
         <div>
       <p className ="m-2 text-sm text-gray-500 font-bold font-serif">
-        Lien du Projet:
+       Link:
         </p>
         <p className ="m-2 ml-6  text-md text-purple-800 font-bold font-serif">{props.project.link}</p>
         </div>
         <div>
       <p className ="m-2 text-sm text-gray-500 font-bold font-serif">
-      Description du projet:
+      Description :
       </p>
       <p className ="m-2 ml-6  text-sm text-purple-800 font-bold font-serif">{ props.project.description}</p>
       </div>

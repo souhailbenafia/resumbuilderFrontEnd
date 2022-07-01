@@ -50,13 +50,13 @@ const Listcertification = (props) => {
     <CardContent className="flex flex-col ">
         <div>
       <p className ="m-2 text-sm text-gray-500 font-bold font-serif">
-        Nom du certification:
+       certificat name:
         </p>
         <p className ="m-2 ml-6  text-md text-purple-800 font-bold font-serif">{props.certif.name}</p>
         </div>
         <div>
       <p className ="m-2 text-sm text-gray-500 font-bold font-serif">
-        Date d'accusation:
+        Accusation date:
       </p>
       <p className ="m-2 ml-6  text-sm text-purple-800 font-bold font-serif">{ props.certif.aquisationDate}</p>
       </div>

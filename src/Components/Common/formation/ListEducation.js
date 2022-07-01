@@ -46,19 +46,19 @@ const Listeducation = (props) => {
         <CardContent className="flex flex-col ">
             <div>
           <p className ="m-2 text-sm text-gray-500 font-bold font-serif">
-            Univesite/école:
+          University/school:
             </p>
             <p className ="m-2 ml-6  text-md text-purple-800 font-bold font-serif">{props.education.university}</p>
             </div>
             <div>
           <p className ="m-2 text-sm text-gray-500 font-bold font-serif">
-           Debut:
+           Start:
           </p>
           <p className ="m-2 ml-6  text-sm text-purple-800 font-bold font-serif">{ props.education.start}</p>
           </div>
           <div>
           <p className ="m-2 text-sm text-gray-500 font-bold font-serif">
-            fin: 
+            End: 
           </p>
           <p className ="m-2 ml-6  text-sm text-purple-800 font-bold font-serif">
           {props.education.end}

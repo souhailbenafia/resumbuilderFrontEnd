@@ -38,7 +38,7 @@ export default function ModelProject(props) {
                     <form className="flex flex-col " onSubmit={props.UpdateSubmitHandlar}>
                         <div className=" flex flex-row  space-x-10    ">
                             <div className="w-60 h-24">
-                                <label className="m-2 ">Nom du projet</label>
+                                <label className="m-2 ">Name</label>
                                 <input
                                     placeholder="Exemple : Todo list"
                                     type="text"

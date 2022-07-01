@@ -29,7 +29,7 @@ export default function ModelInterest(props) {
         <Box sx={style}>
           <form className="flex flex-col place-items-center p-8" onSubmit={props.UpdateSubmitHandlar}>
           <div className='    m-2 h-14 w-full l'>
-            <input   defaultValue={props.interest.name}   onChange={props.onChangeHandler} className='mt-1 shadow-md w-full h-14' placeholder='Nom du certif....' type ="text" name='name'  />
+            <input   defaultValue={props.interest.name}   onChange={props.onChangeHandler} className='mt-1 shadow-md w-full h-14' placeholder='exemple football' type ="text" name='name'  />
             </div>
             <div className='   h-14 m-2 w-full '>
             <input  value={localStorage.getItem('userId')} onChange={props.onChangeHandler} className=' hidden mt-1 shadow-md w-full h-14' type ="text" name='userId' />

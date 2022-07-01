@@ -31,18 +31,18 @@ const Modeleducation = (props) => {
                 <Box sx={style}>
                     <form className="flex flex-col place-items-center p-8" onSubmit={props.UpdateSubmitHandlar}>
                         <div className="m-2 h-14 w-full ">
-                            <input defaultValue={props.education.university}  onChange={props.onChangeHandler} className='mt-1 shadow-md w-full  h-14' placeholder='Unv école ..' type="text" name='University' />
+                            <input defaultValue={props.education.university}  onChange={props.onChangeHandler} className='mt-1 shadow-md w-full  h-14' placeholder='Unv college ..' type="text" name='University' />
                         </div>
                         <div className='  m-2 h-14 w-full  '>
-                            <input defaultValue={props.education.start} onChange={props.onChangeHandler} className='pl-6 mt-1 w-full  h-14' type="date" name="Start" placeholder='Debut' />
+                            <input defaultValue={props.education.start} onChange={props.onChangeHandler} className='pl-6 mt-1 w-full  h-14' type="date" name="Start" placeholder='end' />
                         </div>
 
                         <div className=' m-2 h-14 w-full '>
-                            <input defaultValue={props.education.end} onChange={props.onChangeHandler} className=' pl-6 mt-1 w-full  h-14' type="date" placeholder='Fin' name="End" />
+                            <input defaultValue={props.education.end} onChange={props.onChangeHandler} className=' pl-6 mt-1 w-full  h-14' type="date" placeholder='End' name="End" />
                         </div>
 
                         <div className='   m-2 h-14 w-full  '>
-                            <input defaultValue={props.education.diploma} onChange={props.onChangeHandler} className='mt-1  w-full  h-14' type="text" name='Diploma' placeholder='Diplôme : License en informatique, Doctorat...' />
+                            <input defaultValue={props.education.diploma} onChange={props.onChangeHandler} className='mt-1  w-full  h-14' type="text" name='Diploma' placeholder='Diplôme : Bachelors degree in computer science, PhD...' />
                         </div>
 
                         <div className='  hidden h-14 m-2 w-full '>

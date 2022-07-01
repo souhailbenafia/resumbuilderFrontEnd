@@ -43,7 +43,7 @@ const Modelexperiance = (props) => {
           <div className="flex flex-col ">
         <div className=" flex flex-row  space-x-10    ">
           <div className="w-60 h-24">
-            <label className="m-2 ">Nom de l'entreprise</label>
+            <label className="m-2 ">entreprise name</label>
             <input
             placeholder="Exemple : SouhailDev (facultatif)"
               type="text"
@@ -54,7 +54,7 @@ const Modelexperiance = (props) => {
             ></input>
           </div>
           <div className="w-60 h-24 ">
-            <label className="m-2">Intitulé du poste</label>
+            <label className="m-2">jib title</label>
             <input
             placeholder="Saisissez l'intitulé du poste pour cette entreprise"
               type="text"
@@ -67,7 +67,7 @@ const Modelexperiance = (props) => {
         </div>
 
         <div className="w-60 h-10 space-y-0 mb-4 ">
-          <label className="m-2">Ville</label>
+          <label className="m-2">City</label>
           <input
             type="text"
             name="Location"
@@ -80,7 +80,7 @@ const Modelexperiance = (props) => {
 
         <div className=" flex flex-row mt-10  h-24 space-x-10  ">
           <div className="w-60 h-24">
-            <label className="m-2 ">Debut</label>
+            <label className="m-2 ">Start</label>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DatePicker
               autoOk 
@@ -103,7 +103,7 @@ const Modelexperiance = (props) => {
             </LocalizationProvider>
           </div>
           <div className="w-60 h-40">
-            <label className="m-2">Fin du poste</label>
+            <label className="m-2">End</label>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DatePicker
               variant="inline"
@@ -127,7 +127,7 @@ const Modelexperiance = (props) => {
         </div>
 
         <div className="h-40 w-80 ">
-          <label>Description du poste</label>
+          <label>Job Description </label>
           <textarea
           defaultValue={props.experiance.description}
             type="text"

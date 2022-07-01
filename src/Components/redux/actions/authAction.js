@@ -3,6 +3,7 @@ import { ERRORS, SET_USER } from "../reducers/types";
 import jwtDecode from "jwt-decode";
 import { setAuth } from "../../../util/setauth";
 import { ToastContainer, toast } from "react-toastify";
+import { Navigate } from "react-router-dom";
 
 const generateError = (error) =>
 toast.error(error, {
@@ -35,12 +36,34 @@ export const Registration = (form,navigate)=>dispatch=>{
 
 })
 }
+
+export const RegistrationRec = (form,navigate)=>dispatch=>{
+    axios.post("https://localhost:7154/api/authentication/registerRecruter",form)
+.then(
+    res=>{
+        navigate('/login')
+        dispatch({
+        
+            type: ERRORS,
+            payload:{}
+        })
+    }
+)
+.catch(err=>{
+    dispatch({ 
+        type: ERRORS,
+        payload: err.response.data
+    })
+
+})
+}
 export const LoginAction = (form,navigate)=>dispatch=>{
-    const { data } =   axios.post("https://localhost:7154/api/authentication/login",form)
+    axios.post("https://localhost:7154/api/authentication/login",form)
    
 
     .then(   
         res=>{
+          
             const token = res.data.authData.token
             const role = res.data.authData.roles[0]
             const userId = res.data.authData.id
@@ -49,9 +72,12 @@ export const LoginAction = (form,navigate)=>dispatch=>{
             localStorage.setItem('userId',userId)
             const decode = jwtDecode(token)
             dispatch( setUser(decode))
+            navigate('/home');
             setAuth(token,role)
+           
 
         }
+        
     )
     .catch(err=>{
         

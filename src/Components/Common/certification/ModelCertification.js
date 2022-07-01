@@ -33,11 +33,11 @@ const Modelcertification = (props) => {
         <Box sx={style}>
           <form className="flex flex-col place-items-center p-8" onSubmit={props.UpdateSubmitHandlar}>
           <div className='    m-2 h-14 w-full l'>
-            <input   defaultValue={props.certif.name}   onChange={props.onChangeHandler} className='mt-1 shadow-md w-full h-14' placeholder='Nom du certif....' type ="text" name='name'  />
+            <input   defaultValue={props.certif.name}   onChange={props.onChangeHandler} className='mt-1 shadow-md w-full h-14' placeholder='certif name....' type ="text" name='name'  />
             </div>
 
             <div className='    m-2 w-full h-14'>
-            <input  defaultValue={props.certif.aquisationDate}  onChange={props.onChangeHandler}  className='pl-6 shadow-md mt-1 w-full h-14' type="date"  name="AquisationDate" placeholder='date Daquisation'/>
+            <input  defaultValue={props.certif.aquisationDate}  onChange={props.onChangeHandler}  className='pl-6 shadow-md mt-1 w-full h-14' type="date"  name="AquisationDate" placeholder=' Aquisation date'/>
             </div>
 
             <div className='   h-14 m-2 w-full '>

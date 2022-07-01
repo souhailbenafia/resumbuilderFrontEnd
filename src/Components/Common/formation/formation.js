@@ -12,7 +12,7 @@ function Formation(props) {
       
 
         <div className='   m-2 w-48 l'>
-            <input  onChange={props.onChangeHandler} className='mt-1 shadow-md w-48 h-14' placeholder='Unv école ..' type ="text" name='University' />
+            <input  onChange={props.onChangeHandler} className='mt-1 shadow-md w-48 h-14' placeholder='Unv college ..' type ="text" name='University' />
             {props.errors.University && (  <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
             {props.errors.University}
         </span>)}
@@ -33,7 +33,7 @@ function Formation(props) {
             </div>
 
             <div className='   m-2 w-48 '>
-            <input onChange={props.onChangeHandler}  className='mt-1  w-48 h-14' type ="text" name='Diploma' placeholder='Diplôme : License en informatique, Doctorat...'/>
+            <input onChange={props.onChangeHandler}  className='mt-1  w-48 h-14' type ="text" name='Diploma' placeholder='Diplôme : Bachelors degree in computer science, PhD...'/>
             {props.errors.Diploma && (  <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
             {props.errors.Diploma}
         </span>)}

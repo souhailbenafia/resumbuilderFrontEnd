@@ -51,7 +51,7 @@ export default function ListLangue(props) {
         </div>
         <div>
       <p className ="m-2 text-sm text-gray-500 font-bold font-serif">
-        Niveau:
+        Level:
       </p>
       <p className ="m-2 ml-6  text-sm text-purple-800 font-bold font-serif">{ props.langue.niveau}</p>
       </div>

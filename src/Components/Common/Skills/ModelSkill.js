@@ -32,7 +32,7 @@ export default function ModelSkill(props) {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Quelles sont vos technos favorites?*
+          What are your favorite technologies?
           </Typography>
           <form className="flex flex-col place-items-center" onSubmit={props.onSubmitHandler}>
             <div className="   m-2  ">

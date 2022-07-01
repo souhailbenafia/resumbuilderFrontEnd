@@ -20,7 +20,7 @@ function Experiance(props) {
  <div className="flex flex-col ">
         <div className=" flex flex-row  space-x-10    ">
           <div className="w-60 h-24">
-            <label className="m-2 ">Nom de l'entreprise</label>
+            <label className="m-2 ">Entreprise name</label>
             <input
             placeholder="Exemple : SouhailDev (facultatif)"
               type="text"
@@ -33,9 +33,9 @@ function Experiance(props) {
         </span>)}
           </div>
           <div className="w-60 h-24 ">
-            <label className="m-2">Intitulé du poste</label>
+            <label className="m-2">Job title</label>
             <input
-            placeholder="Saisissez l'intitulé du poste pour cette entreprise"
+            placeholder="Enter the job title for this company"
               type="text"
               name="position"
               className="w-60 h-14 rounded-sm shadow-md"
@@ -48,7 +48,7 @@ function Experiance(props) {
         </div>
 
         <div className="w-60 h-10 space-y-0 mb-4 ">
-          <label className="m-2">Ville</label>
+          <label className="m-2">City</label>
           <input
             type="text"
             name="Location"
@@ -62,7 +62,7 @@ function Experiance(props) {
 
         <div className=" flex flex-row mt-10  h-24 space-x-10  ">
           <div className="w-60 h-24">
-            <label className="m-2 ">Debut</label>
+            <label className="m-2 ">Start</label>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DatePicker
               autoOk 
@@ -87,7 +87,7 @@ function Experiance(props) {
         </span>)}
           </div>
           <div className="w-60 h-40">
-            <label className="m-2">Fin du poste</label>
+            <label className="m-2">End</label>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DatePicker
               variant="inline"
@@ -113,7 +113,7 @@ function Experiance(props) {
         </div>
 
         <div className="h-40 w-80 ">
-          <label>Description du poste</label>
+          <label>Job Description</label>
           <textarea
             type="text"
             name="description"

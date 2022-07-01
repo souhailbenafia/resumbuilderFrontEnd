@@ -15,7 +15,7 @@ function Project(props) {
     <form className="flex flex-col " onSubmit={props.onSubmitHandler}> 
         <div className=" flex flex-row  space-x-10    ">
           <div className="w-60 h-24">
-            <label className="m-2 ">Nom du projet</label>
+            <label className="m-2 ">Name</label>
             <input
             placeholder="Exemple : Todo list"
               type="text"
@@ -28,7 +28,7 @@ function Project(props) {
         </span>)}
           </div>
           <div className="w-60 h-24 ">
-            <label className="m-2">Lien du projet</label>
+            <label className="m-2">Link</label>
             <input
             placeholder="Lien du project"
               type="text"
@@ -43,7 +43,7 @@ function Project(props) {
         </div>
         
         <div className="h-40 w-80 ">
-          <label>Description du projet</label>
+          <label>Description </label>
           <textarea
             onChange={props.onChangeHandler} 
             type="text"

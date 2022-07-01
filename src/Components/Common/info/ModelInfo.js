@@ -35,7 +35,7 @@ export default function ModelInfo(props) {
         <Box sx={style}>
             <form className="flex flex-col " onSubmit={props.UpdateSubmitHandlar}>
             <h2 className=" text-slate-700 font-serif font-bold  ">
-        Nombre d'années d'expérience en entreprise en tant que développeur
+            Number of years of corporate experience as a developer
       </h2>
       <div className=" m-4">
         <Box width={500}>

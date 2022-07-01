@@ -15,6 +15,20 @@ export default function InfoPage() {
     const [infos, setinfos] = useState([]);
     const [form, setform] = useState({ "UserId": localStorage.getItem('userId') })
     const [i, seti] = useState(1)
+    const [src,setsrc]=useState()
+
+    const [img,selectedImg]=useState();
+
+    
+
+    const changeImg=(e)=>{
+      selectedImg(
+         e.target.files[0]
+      )
+      submitForm(e)
+       
+      }
+    
   
     const onChangeHandler = (e) => {
       setform(
@@ -26,7 +40,6 @@ export default function InfoPage() {
     }
     const onSubmitHandler = async (e) => {
       e.preventDefault();
-      e.target.reset();
       console.log(form)
       await axios.post('https://localhost:7154/api/info/add', form)
         .then(
@@ -38,6 +51,7 @@ export default function InfoPage() {
 
           setError(err.response.data.errors);
        })
+       e.target.reset();
       setTimeout(() => {
       }, 500000)
       seti({ ...i, i: i })
@@ -51,7 +65,24 @@ export default function InfoPage() {
         )
       seti({ ...i, i: 1 })
     }
-  
+    const submitForm = (e) => {
+      e.preventDefault();
+      const formData = new FormData();
+      formData.append('file', img,img.name);
+    
+      axios
+        .post('https://localhost:7154/api/info/upload', formData)
+        .then((res) => {
+          alert("File Upload success");
+          setform({
+            ...form, "imageSource": res.data.dbPath
+
+          })
+          
+          setsrc(res.data.dbPath)
+        })
+        .catch((err) => alert("File Upload Error"));
+    };
     useEffect(async () => {
       await axios.get(`https://localhost:7154/api/info/getbyuser?id=${localStorage.getItem('userId')}`).then(res => {
         setinfos(res.data)
@@ -86,16 +117,17 @@ export default function InfoPage() {
 
           <NavBar />
 
-          <p className='mt-10 ml-5 text-gray-500 font-bold font-serif text-6xl'>1/6</p>
+          <p className='mt-10 ml-5 text-gray-500 font-bold font-serif text-6xl'>1/9</p>
 
-          <h3 className=' mt-10 ml-5 text-2xl text-gray-500 font-bold font-serif'>Vos certifications</h3>
+          <h3 className=' mt-10 ml-5 text-2xl text-gray-500 font-bold font-serif'>your information</h3>
 
           <hr className=' mt-6 w-2/3 border mx-auto font-bold ' />
 
 
 
 
-          <Info errors={error} form={form} setform={setform} onChangeHandler={onChangeHandler} onSubmitHandler={onSubmitHandler} />
+
+          <Info errors={error} img={img} submitForm={submitForm} src={src} form={form} setform={setform} onChangeHandler={onChangeHandler} onSubmitHandler={onSubmitHandler} changeImg={changeImg} />
 
           <div className='mx-auto  w-5/6 grid grid-cols-2 '>
 

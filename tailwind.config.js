@@ -7,5 +7,6 @@ module.exports = {
     backgroundColor: ["responsive", "hover", "focus", "invalid"],
     borderColor: ["responsive", "hover", "focus", "invalid"],
   },
-  plugins: [require("tailwindcss-invalid-variant-plugin")],
+  plugins: [require("tailwindcss-invalid-variant-plugin") ,require('tailwind-scrollbar')],
+  
 }

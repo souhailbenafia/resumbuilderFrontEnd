@@ -54,14 +54,14 @@ const Listexperiance = (props) => {
         </div>
         <div>
       <p className ="m-2 text-sm text-gray-500 font-bold font-serif">
-        Poste:
+        job title:
         </p>
         <p className ="m-2 ml-6  text-md text-purple-800 font-bold font-serif">{props.experiance.position}</p>
         </div>
 
         <div>
       <p className ="m-2 text-sm text-gray-500 font-bold font-serif">
-      Description du post:
+      Job Description:
       </p>
       <p className ="m-2 ml-6  text-sm text-purple-800 font-bold font-serif">{ props.experiance.description}</p>
       </div>
@@ -78,7 +78,7 @@ const Listexperiance = (props) => {
      </div>
      <div>
       <p className ="m-2 text-sm text-gray-500 font-bold font-serif">
-        Debut:
+       start:
         
       </p>
       <p className ="m-2 ml-6  text-sm text-purple-800 font-bold font-serif">
@@ -89,8 +89,7 @@ const Listexperiance = (props) => {
      </div>
      <div>
       <p className ="m-2 text-sm text-gray-500 font-bold font-serif">
-        Fin:
-        
+        End
       </p>
       <p className ="m-2 ml-6  text-sm text-purple-800 font-bold font-serif">
       {props.experiance.end}

@@ -37,20 +37,11 @@ const validate = (values) => {
 
 function LoginPage() {
   const initialValues = { username: "", password: "" };
-
- 
-
-  
-
-
   const [form, setForm] = useState(initialValues)
   const [formErrors, setFormErrors] = useState({});
- // const [error,setError]= useState()
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const error = useSelector(state => state.error.error.error)
-
-  
 
   const OnChangeHandler = (e)=>{
     const { name, value } = e.target;
@@ -58,16 +49,22 @@ function LoginPage() {
       ...form,
       [name]: value 
     })
-    setFormErrors(validate(form));
+   
   }
+ const onquite = ()=>{
+  setFormErrors(validate(form));
+ }
 
   const handleSubmit = (event) => {
 
     event.preventDefault();
     setFormErrors(validate(form));
+
     if (Object.keys(formErrors).length === 0 ) {
     dispatch(LoginAction(form,navigate));
     }
+
+   
 
     
     
@@ -113,10 +110,10 @@ function LoginPage() {
                 <Grid  container spacing={2}>
                 
                   
-                  <Inputs  label="Email" name="username" type="email" icon="fa-solid fa-user" OnChangeHandler={OnChangeHandler} errors={formErrors.username}/>
+                  <Inputs  label="Email" name="username" type="email" icon="fa-solid fa-user" onbrul={onquite} OnChangeHandler={OnChangeHandler} errors={formErrors.username}/>
               
 
-                  <Inputs  label="Password" name="password" type="password" icon="fa-solid fa-user" OnChangeHandler={OnChangeHandler} errors={formErrors.password}/>
+                  <Inputs  label="Password" name="password" type="password" icon="fa-solid fa-user" onbrul={onquite} OnChangeHandler={OnChangeHandler} errors={formErrors.password}/>
                   </Grid>
                 <Button
                   type="submit"
@@ -124,12 +121,12 @@ function LoginPage() {
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
                 >
-                  Sign Up
+                  Sign In
                 </Button>
                 <Grid container justifyContent="flex-end">
                   <Grid item>
-                    <Link href="#" variant="body2">
-                      Already have an account? Sign in
+                    <Link href="register" variant="body2">
+                      Don't have an account? Sign Up for free now!
                     </Link>
                   </Grid>
 

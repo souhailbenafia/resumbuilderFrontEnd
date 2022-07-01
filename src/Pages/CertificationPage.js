@@ -83,7 +83,7 @@ function CertificationPage() {
       bg-gradient-to-b from-purple-300 to-purple-400
       ' >
 
-        <img className='h-full bg-scroll w-full' src="https://process.filestackapi.com/resize=width:1000/MFcDeCdsQPakzIKL8ccJ">
+        <img className='h-full bg-scroll w-full' src="https://process.filestackapi.com/resize=width:1000/8lzRPnzgSL6jHtOU9bJO">
 
         </img>
       </div>
@@ -99,7 +99,7 @@ function CertificationPage() {
 
           <NavBar />
 
-          <p className='mt-10 ml-5 text-gray-500 font-bold font-serif text-6xl'>3/6</p>
+          <p className='mt-10 ml-5 text-gray-500 font-bold font-serif text-6xl'>6/9</p>
 
           <h3 className=' mt-10 ml-5 text-2xl text-gray-500 font-bold font-serif'>Vos certifications</h3>
 

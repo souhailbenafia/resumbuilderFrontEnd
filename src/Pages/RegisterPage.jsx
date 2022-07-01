@@ -55,7 +55,7 @@ const validate = (values) => {
 
 
 const Registerpage = () => {
-  const [form, setForm] = useState({})
+  const [form, setForm] = useState({ "Societe": "dddd"})
   const [formErrors, setFormErrors] = useState({});
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -77,6 +77,9 @@ const Registerpage = () => {
       ...form,
       [e.target.name] : e.target.value
     })
+  }
+  const onbrul = ()=>{
+    setFormErrors(validate(form));
   }
 
   const handleSubmit = (event) => {
@@ -133,6 +136,7 @@ const Registerpage = () => {
                       label="First Name"
                       autoFocus
                       onChange={OnChangeHandler}
+                      onBlur={onbrul}
                     />
                      <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
             {formErrors.firstName}
@@ -147,6 +151,7 @@ const Registerpage = () => {
                       name="lastName"
                       autoComplete="family-name"
                       onChange={OnChangeHandler}
+                      onBlur={onbrul}
                     />
                           <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
             {formErrors.lastName}
@@ -204,11 +209,11 @@ const Registerpage = () => {
                   </Grid>
                   
                   
-                  <Inputs  label="Email" name="email" type="email" icon="fa-solid fa-user" OnChangeHandler={OnChangeHandler} errors={formErrors.email}/>
+                  <Inputs  label="Email" name="email" type="email" icon="fa-solid fa-user"  onbrul={onbrul} OnChangeHandler={OnChangeHandler} errors={formErrors.email}/>
 
-                  <Inputs  label="Phone number" name="Phone" type="number" icon="fa-solid fa-user" OnChangeHandler={OnChangeHandler} errors={formErrors.PhoneNumber}/>
+                  <Inputs  label="Phone number" name="Phone" type="number" icon="fa-solid fa-user"  onbrul={onbrul} OnChangeHandler={OnChangeHandler} errors={formErrors.PhoneNumber}/>
               
-                  <Inputs  label="Password" name="password" type="password" icon="fa-solid fa-user" OnChangeHandler={OnChangeHandler} errors={formErrors.password}/>
+                  <Inputs  label="Password" name="password" type="password" icon="fa-solid fa-user"  onbrul={onbrul} OnChangeHandler={OnChangeHandler} errors={formErrors.password}/>
                 </Grid>
                 <Button
                   type="submit"
@@ -220,7 +225,7 @@ const Registerpage = () => {
                 </Button>
                 <Grid container justifyContent="flex-end">
                   <Grid item>
-                    <Link href="#" variant="body2">
+                    <Link href="/login" variant="body2">
                       Already have an account? Sign in
                     </Link>
                   </Grid>

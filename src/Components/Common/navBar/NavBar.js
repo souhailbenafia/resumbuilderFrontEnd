@@ -16,14 +16,15 @@ function NavBar() {
   return (
     <div className="">
      <nav className=" mt-4 text-center bg- space-x-6 font-bold text-gray-500">
-         <Link className="hover:text-rose-500 "  to="/">Education</Link>
-         <Link className="hover:text-rose-500 "  to="/">Experiance</Link>
-         <Link className="hover:text-rose-500 "  to="/">Interest</Link>
-         <Link className="hover:text-rose-500 "  to="/">Language</Link>
-         <Link className="hover:text-rose-500 "  to="/">Skills</Link>
-         <Link className="hover:text-rose-500 "  to="/">Social Network</Link>
-         <Link className="hover:text-rose-500 "  to="/">Project </Link>
-         <Link className="hover:text-rose-500 "  to="/">Certification </Link>
+         <Link className="hover:text-rose-500 "  to="/info">Information </Link>
+         <Link className="hover:text-rose-500 "  to="/socialnetwork">Social Network</Link>
+         <Link className="hover:text-rose-500 "  to="/education">Education</Link>
+         <Link className="hover:text-rose-500 "  to="/experiance">Experience</Link>
+         <Link className="hover:text-rose-500 "  to="/skills">Skills</Link>
+         <Link className="hover:text-rose-500 "  to="/certification">Certification </Link>
+         <Link className="hover:text-rose-500 "  to="/project">Projet </Link>
+         <Link className="hover:text-rose-500 "  to="/language">Language</Link>
+         <Link className="hover:text-rose-500 "  to="/interest">Interest</Link>
          <Link className="hover:text-rose-500 "  to="/login" onClick={LogoutHanlder}>
                 Logout
               </Link>

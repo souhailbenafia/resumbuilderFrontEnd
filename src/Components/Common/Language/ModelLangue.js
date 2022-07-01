@@ -30,7 +30,7 @@ export default function ModelLangue(props) {
         <Box sx={style}>
           <form className="flex flex-col place-items-center  space-y-4 p-8" onSubmit={props.UpdateSubmitHandlar}>
           <div className='    m-2 h-14 w-full l'>
-            <input   defaultValue={props.langue.languge} onChange={props.onChangeHandler} className='mt-1 shadow-md w-full h-14' placeholder='Nom du certif....' type ="text" name='name'  />
+            <input   defaultValue={props.langue.languge} onChange={props.onChangeHandler} className='mt-1 shadow-md w-full h-14' placeholder='Certif name....' type ="text" name='name'  />
             </div>
 
             <FormControl className="shadow-md w-full bg-white m-2  ">
@@ -38,7 +38,7 @@ export default function ModelLangue(props) {
                   defaultValue={ props.langue.niveau}
                   name="Niveau"
                   onChange={props.onChangeHandler}
-                  placeholder="Choisir votre Niveau"
+                  placeholder="Chose level"
                 >
                   <MenuItem value="A1">A1 </MenuItem>
                   <MenuItem value="A2"> A2 </MenuItem>
@@ -55,7 +55,7 @@ export default function ModelLangue(props) {
                 defaultValue={props.langue.fluency}
                   name="Fluency"
                   onChange={props.onChangeHandler}
-                  placeholder="Choisir votre Niveau"
+                  placeholder="Chose level"
                 >
                   <MenuItem value="Beginner">Beginner </MenuItem>
                   <MenuItem value="Intermediate"> Intermediate </MenuItem>

@@ -95,7 +95,7 @@ function SkillsPage() {
 
             <NavBar/>
 
-            <p className='mt-10 ml-5 text-gray-500 font-bold font-serif text-6xl'>3/6</p>
+            <p className='mt-10 ml-5 text-gray-500 font-bold font-serif text-6xl'>5/9</p>
 
             <h3 className=' mt-10 ml-5 text-2xl text-gray-500 font-bold font-serif'>Vos Skills</h3>
 

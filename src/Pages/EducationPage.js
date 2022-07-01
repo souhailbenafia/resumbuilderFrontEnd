@@ -99,9 +99,9 @@ function EducationPage() {
 
           <NavBar />
 
-          <p className='mt-10 ml-5 text-gray-500 font-bold font-serif text-6xl'>2/6</p>
+          <p className='mt-10 ml-5 text-gray-500 font-bold font-serif text-6xl'>3/9</p>
 
-          <h3 className=' mt-10 ml-5 text-2xl text-gray-500 font-bold font-serif'>Vos formations</h3>
+          <h3 className=' mt-10 ml-5 text-2xl text-gray-500 font-bold font-serif'>Academic Background</h3>
 
           <hr className=' mt-6 w-2/3 border mx-auto font-bold ' />
 

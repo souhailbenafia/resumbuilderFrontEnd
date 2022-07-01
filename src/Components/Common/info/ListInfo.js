@@ -44,19 +44,19 @@ export default function ListInfo(props) {
 
         <div>
       <p className ="m-2 text-sm text-gray-500 font-bold font-serif">
-        experiance :
+        experience :
         </p>
         <p className ="m-2 ml-6  text-md text-purple-800 font-bold font-serif">{props.info.yearOfExpirence}</p>
         </div>
         <div>
       <p className ="m-2 text-sm text-gray-500 font-bold font-serif">
-        post:
+        Job title:
         </p>
         <p className ="m-2 ml-6  text-md text-purple-800 font-bold font-serif">{props.info.info}</p>
         </div>
         <div>
       <p className ="m-2 text-sm text-gray-500 font-bold font-serif">
-      Address:
+      Adress:
       </p>
       <p className ="m-2 ml-6  text-sm text-purple-800 font-bold font-serif">{ props.info.address}</p>
       </div>

@@ -85,9 +85,9 @@ function InterestPage() {
 
             <NavBar/>
 
-            <p className='mt-10 ml-5 text-gray-500 font-bold font-serif text-6xl'>5/7</p>
+            <p className='mt-10 ml-5 text-gray-500 font-bold font-serif text-6xl'>9/9</p>
 
-            <h3 className=' mt-10 ml-5 text-2xl text-gray-500 font-bold font-serif'>Vos préférences</h3>
+            <h3 className=' mt-10 ml-5 text-2xl text-gray-500 font-bold font-serif'>Your preferences</h3>
 
             <hr className= ' mt-6 w-2/3 border mx-auto font-bold '/>
 

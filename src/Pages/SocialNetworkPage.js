@@ -160,13 +160,13 @@ function SocialNetwork() {
            <ArrowBackIosNewRoundedIcon className='text-white'/>
            </Link>
         </div>
-        <div className='w-5/6'>
+        <div className='w-5/6 justify-center items-center'>
 
             <NavBar/>
 
-            <p className='mt-10 ml-5 text-gray-500 font-bold font-serif text-6xl'>3/6</p>
+            <p className='mt-10 ml-5 text-gray-500 font-bold font-serif text-6xl'>2/9</p>
 
-            <h3 className=' mt-10 ml-5 text-2xl text-gray-500 font-bold font-serif'>Vos Réseau social</h3>
+            <h3 className=' mt-10 ml-5 text-2xl text-gray-500 font-bold font-serif'>Social Network</h3>
 
             <hr className= ' mt-6 w-2/3 border mx-auto font-bold '/> 
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 
 const Welcome = () => {
@@ -6,7 +7,7 @@ const Welcome = () => {
         <div className=" flex "
         
         >
-            <button className=" h-screen w-1/2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105"  
+            <Link  to="/registerRec" className=" h-screen w-1/2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105"  
             style={{ 
       backgroundImage: `url("https://process.filestackapi.com/auto_image/compress/KLD4JhCQTi7u5GImLYCg")` 
     }} 
@@ -34,8 +35,8 @@ const Welcome = () => {
                 </div>
 
 
-            </button>
-            <button className="h-screen w-1/2 " 
+            </Link>
+            <Link  to="/register" className="h-screen w-1/2 " 
              style={{ 
       backgroundImage: ` url("https://process.filestackapi.com/auto_image/compress/VPvVyWktRI2ttYaqaX9J")`}}
        >
@@ -46,7 +47,7 @@ const Welcome = () => {
                         <p className="flex items-end   mr-4 mb-4 text-white font-bold">
                            Already have an account? 
                         </p>
-                        <button className="text-white border-4 hover:text-pink-600 hover:bg-white  h rounded-3xl p-3 font-bold">LOGIN NOW</button>
+                        <Link  to="/login" className="text-white border-4 hover:text-pink-600 hover:bg-white  h rounded-3xl p-3 font-bold">LOGIN NOW</Link >
             </div>
            </div>
             <div><div className="font-mono font-black text-5xl text-white mb-8 -skew-y-6">
@@ -66,7 +67,7 @@ const Welcome = () => {
                
            
 
-            </button>
+            </Link>
         </div>
     );
 }
